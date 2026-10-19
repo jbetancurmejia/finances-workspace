@@ -1,5 +1,15 @@
 {
   "app": {
     "title": "Money"
+  },
+  "lifeCost": {
+    "title": "Costo en horas de vida",
+    "amountLabel": "Monto (COP)",
+    "submit": "Calcular",
+    "result": "Este gasto equivale a {hours} horas ({days} días) de tu trabajo",
+    "errors": {
+      "invalidAmount": "Ingresa un monto mayor a cero",
+      "network": "No pudimos conectar con el servidor"
+    }
   }
 }

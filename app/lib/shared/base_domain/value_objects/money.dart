@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 final class Money extends Equatable {
-  const Money.cop(this.minorUnits);
+  const Money.cop(this.pesos);
 
-  final int minorUnits;
+  final int pesos;
 
   @override
-  List<Object?> get props => [minorUnits];
+  List<Object?> get props => [pesos];
 }

@@ -3,7 +3,7 @@ import 'package:money_app/shared/base_domain/value_objects/money.dart';
 
 void main() {
   group('Money', () {
-    test('two values with the same minor units are equal', () {
+    test('two values with the same pesos are equal', () {
       // Arrange & Act
       const first = Money.cop(30000000);
       const second = Money.cop(30000000);
@@ -12,7 +12,7 @@ void main() {
       expect(first, second);
     });
 
-    test('values with different minor units are not equal', () {
+    test('values with different pesos are not equal', () {
       // Arrange & Act
       const first = Money.cop(30000000);
       const second = Money.cop(1500000);

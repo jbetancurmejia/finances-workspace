@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Money.Application;
 using Money.Infrastructure;
 using Money.Infrastructure.Persistence;
 
@@ -10,6 +11,7 @@ var jwtSection = builder.Configuration.GetSection("Jwt");
 var jwtKey = jwtSection["Key"]
     ?? throw new InvalidOperationException("Jwt:Key is not configured.");
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services
@@ -41,8 +43,12 @@ var app = builder.Build();
 
 DbInitializer.Initialize(app.Services);
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();

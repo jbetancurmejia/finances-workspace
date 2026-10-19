@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Money.Domain.Entities;
 
 namespace Money.Infrastructure.Persistence;
 
 public sealed class MoneyDbContext(DbContextOptions<MoneyDbContext> options) : DbContext(options)
 {
+    public DbSet<UserProfile> UserProfiles => Set<UserProfile>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MoneyDbContext).Assembly);

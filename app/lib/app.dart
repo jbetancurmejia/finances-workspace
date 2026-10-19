@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class MoneyApp extends StatelessWidget {
-  const MoneyApp({super.key});
+final class MoneyApp extends StatelessWidget {
+  const MoneyApp({required this.home, super.key});
+
+  final Widget home;
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +13,7 @@ class MoneyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: Scaffold(
-        body: Center(
-          child: Text('app.title'.tr()),
-        ),
-      ),
+      home: home,
     );
   }
 }
