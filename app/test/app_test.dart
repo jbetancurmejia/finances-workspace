@@ -11,14 +11,14 @@ void main() {
     await EasyLocalization.ensureInitialized();
   });
 
-  testWidgets('MoneyApp renders the translated app title', (tester) async {
+  testWidgets('MoneyApp renders the home it receives', (tester) async {
     // Arrange
     await tester.pumpWidget(
       EasyLocalization(
         supportedLocales: const [Locale('es'), Locale('en')],
         path: 'assets/translations',
         fallbackLocale: const Locale('es'),
-        child: const MoneyApp(),
+        child: const MoneyApp(home: Text('home-marker')),
       ),
     );
 
@@ -26,6 +26,6 @@ void main() {
     await tester.pumpAndSettle();
 
     // Assert
-    expect(find.text('Money'), findsOneWidget);
+    expect(find.text('home-marker'), findsOneWidget);
   });
 }

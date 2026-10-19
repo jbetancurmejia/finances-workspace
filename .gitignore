@@ -29,3 +29,6 @@ backend/**/app.db-wal
 # Secretos
 .env
 *.env.local
+
+# Registros locales de revisión de PR
+findings/

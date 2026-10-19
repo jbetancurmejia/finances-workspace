@@ -1,5 +1,15 @@
 {
   "app": {
     "title": "Money"
+  },
+  "lifeCost": {
+    "title": "Cost in life hours",
+    "amountLabel": "Amount (COP)",
+    "submit": "Calculate",
+    "result": "This expense equals {hours} hours ({days} days) of your work",
+    "errors": {
+      "invalidAmount": "Enter an amount greater than zero",
+      "network": "We could not reach the server"
+    }
   }
 }
