@@ -1,0 +1,31 @@
+# Flutter / Dart
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/build/
+app/ios/Pods/
+app/android/.gradle/
+app/android/local.properties
+app/*.iml
+app/.idea/
+app/.vscode/
+
+# .NET
+backend/**/bin/
+backend/**/obj/
+backend/**/.vs/
+backend/**/*.user
+backend/**/TestResults/
+backend/**/app.db
+backend/**/app.db-shm
+backend/**/app.db-wal
+
+# OS / editor
+.DS_Store
+.idea/
+*.swp
+
+# Secretos
+.env
+*.env.local
