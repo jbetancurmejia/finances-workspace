@@ -10,7 +10,7 @@ public sealed class UserProfile : Entity
     {
     }
 
-    public UserProfile(decimal monthlySalary, decimal monthlyWorkHours)
+    public UserProfile(Guid userId, decimal monthlySalary, decimal monthlyWorkHours)
     {
         if (monthlySalary <= 0)
         {
@@ -22,9 +22,12 @@ public sealed class UserProfile : Entity
             throw new ArgumentOutOfRangeException(nameof(monthlyWorkHours), "Monthly work hours must be positive.");
         }
 
+        UserId = userId;
         MonthlySalary = monthlySalary;
         MonthlyWorkHours = monthlyWorkHours;
     }
+
+    public Guid UserId { get; private set; }
 
     public decimal MonthlySalary { get; private set; }
 

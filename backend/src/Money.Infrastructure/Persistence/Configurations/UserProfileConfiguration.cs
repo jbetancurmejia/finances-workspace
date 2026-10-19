@@ -12,5 +12,6 @@ public sealed class UserProfileConfiguration : IEntityTypeConfiguration<UserProf
         builder.HasKey(profile => profile.Id);
         builder.Property(profile => profile.MonthlySalary).HasPrecision(18, 2);
         builder.Property(profile => profile.MonthlyWorkHours).HasPrecision(18, 2);
+        builder.HasIndex(profile => profile.UserId).IsUnique();
     }
 }

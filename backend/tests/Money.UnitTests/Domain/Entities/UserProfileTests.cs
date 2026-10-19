@@ -9,7 +9,7 @@ public sealed class UserProfileTests
     public void CalculateLifeCost_WhenAmountIs300000_ReturnsTwentyFourHoursAndThreeDays()
     {
         // Arrange
-        var profile = new UserProfile(monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
+        var profile = new UserProfile(Guid.NewGuid(), monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
 
         // Act
         var lifeCost = profile.CalculateLifeCost(300_000m);
@@ -23,7 +23,7 @@ public sealed class UserProfileTests
     public void HourlyRate_WhenSalaryAndHoursAreSet_ReturnsSalaryDividedByHours()
     {
         // Arrange
-        var profile = new UserProfile(monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
+        var profile = new UserProfile(Guid.NewGuid(), monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
 
         // Act
         var rate = profile.HourlyRate;
@@ -36,7 +36,7 @@ public sealed class UserProfileTests
     public void CalculateLifeCost_WhenAmountIsNotPositive_ThrowsArgumentOutOfRangeException()
     {
         // Arrange
-        var profile = new UserProfile(monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
+        var profile = new UserProfile(Guid.NewGuid(), monthlySalary: 2_000_000m, monthlyWorkHours: 160m);
 
         // Act
         var act = () => profile.CalculateLifeCost(0m);
@@ -49,7 +49,7 @@ public sealed class UserProfileTests
     public void Constructor_WhenWorkHoursAreZero_ThrowsArgumentOutOfRangeException()
     {
         // Arrange & Act
-        var act = () => new UserProfile(monthlySalary: 2_000_000m, monthlyWorkHours: 0m);
+        var act = () => new UserProfile(Guid.NewGuid(), monthlySalary: 2_000_000m, monthlyWorkHours: 0m);
 
         // Assert
         act.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("monthlyWorkHours");
@@ -59,7 +59,7 @@ public sealed class UserProfileTests
     public void Constructor_WhenSalaryIsNotPositive_ThrowsArgumentOutOfRangeException()
     {
         // Arrange & Act
-        var act = () => new UserProfile(monthlySalary: -1m, monthlyWorkHours: 160m);
+        var act = () => new UserProfile(Guid.NewGuid(), monthlySalary: -1m, monthlyWorkHours: 160m);
 
         // Assert
         act.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("monthlySalary");

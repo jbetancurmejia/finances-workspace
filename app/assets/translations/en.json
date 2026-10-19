@@ -11,5 +11,23 @@
       "invalidAmount": "Enter an amount greater than zero",
       "network": "We could not reach the server"
     }
+  },
+  "auth": {
+    "title": "Sign in to Money",
+    "displayName": "Name",
+    "email": "Email",
+    "password": "Password (minimum 8 characters)",
+    "monthlySalary": "Monthly salary (COP)",
+    "monthlyWorkHours": "Work hours per month",
+    "loginAction": "Sign in",
+    "registerAction": "Create account",
+    "switchToLogin": "I already have an account",
+    "switchToRegister": "Create a new account",
+    "errors": {
+      "invalidCredentials": "Incorrect email or password",
+      "emailTaken": "An account with that email already exists",
+      "invalidInput": "Check the information you entered",
+      "network": "We could not reach the server"
+    }
   }
 }
