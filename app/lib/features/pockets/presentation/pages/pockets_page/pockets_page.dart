@@ -17,6 +17,7 @@ final class PocketsPage extends StatelessWidget {
     required this.createPocket,
     required this.addMember,
     required this.lifeCostBuilder,
+    required this.workspaceBuilder,
     super.key,
   });
 
@@ -24,20 +25,22 @@ final class PocketsPage extends StatelessWidget {
   final UseCase<Pocket, String> createPocket;
   final UseCase<void, AddMemberParams> addMember;
   final WidgetBuilder lifeCostBuilder;
+  final Widget Function(BuildContext context, Pocket pocket) workspaceBuilder;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => PocketsCubit(loadPockets, createPocket, addMember)..load(),
-      child: _PocketsView(lifeCostBuilder: lifeCostBuilder),
+      child: _PocketsView(lifeCostBuilder: lifeCostBuilder, workspaceBuilder: workspaceBuilder),
     );
   }
 }
 
 final class _PocketsView extends StatelessWidget {
-  const _PocketsView({required this.lifeCostBuilder});
+  const _PocketsView({required this.lifeCostBuilder, required this.workspaceBuilder});
 
   final WidgetBuilder lifeCostBuilder;
+  final Widget Function(BuildContext context, Pocket pocket) workspaceBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ final class _PocketsView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _StatusMessage(status: state.status),
-                Expanded(child: _PocketList(state: state)),
+                Expanded(child: _PocketList(state: state, workspaceBuilder: workspaceBuilder)),
               ],
             ),
           );
@@ -77,9 +80,10 @@ final class _PocketsView extends StatelessWidget {
 }
 
 final class _PocketList extends StatelessWidget {
-  const _PocketList({required this.state});
+  const _PocketList({required this.state, required this.workspaceBuilder});
 
   final PocketsState state;
+  final Widget Function(BuildContext context, Pocket pocket) workspaceBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +103,9 @@ final class _PocketList extends StatelessWidget {
 
         return PocketTile(
           pocket: pocket,
+          onOpen: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(builder: (ctx) => workspaceBuilder(ctx, pocket)),
+          ),
           onAddMember: () => _promptForMember(context, pocket),
         );
       },
