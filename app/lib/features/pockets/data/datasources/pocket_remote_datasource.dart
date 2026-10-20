@@ -17,7 +17,7 @@ final class PocketHttpDatasource implements PocketRemoteDatasource {
 
   @override
   Future<List<PocketDto>> fetchPockets() async {
-    final response = await _client.get<List<dynamic>>('/api/workspaces');
+    final response = await _client.get<List<dynamic>>('/api/workspaces/cards');
 
     return (response.data ?? const <dynamic>[])
         .cast<Map<String, dynamic>>()
