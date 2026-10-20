@@ -52,5 +52,23 @@
       "invalidInput": "Check the name or email",
       "network": "We could not reach the server"
     }
+  },
+  "transactions": {
+    "kindExpense": "Expense",
+    "kindIncome": "Income",
+    "amountLabel": "Amount (COP)",
+    "descriptionLabel": "Description",
+    "previewAction": "See life-hours cost",
+    "saveAction": "Save",
+    "preview": "This expense equals {hours} hours ({days} days) of your work",
+    "empty": "No entries in this pocket yet.",
+    "messages": {
+      "recorded": "Entry saved"
+    },
+    "errors": {
+      "invalidInput": "Check the amount and description",
+      "network": "We could not reach the server",
+      "preview": "We could not calculate the preview"
+    }
   }
 }

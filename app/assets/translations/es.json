@@ -52,5 +52,23 @@
       "invalidInput": "Revisa el nombre o el correo",
       "network": "No pudimos conectar con el servidor"
     }
+  },
+  "transactions": {
+    "kindExpense": "Gasto",
+    "kindIncome": "Ingreso",
+    "amountLabel": "Monto (COP)",
+    "descriptionLabel": "Descripción",
+    "previewAction": "Ver horas de vida",
+    "saveAction": "Guardar",
+    "preview": "Este gasto equivale a {hours} horas ({days} días) de tu trabajo",
+    "empty": "Aún no hay movimientos en este bolsillo.",
+    "messages": {
+      "recorded": "Movimiento guardado"
+    },
+    "errors": {
+      "invalidInput": "Revisa el monto y la descripción",
+      "network": "No pudimos conectar con el servidor",
+      "preview": "No pudimos calcular la vista previa"
+    }
   }
 }

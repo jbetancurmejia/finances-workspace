@@ -19,6 +19,7 @@ Documento de referencia para desarrollo y revisión de PRs. Complementa `flutter
 - `Money.Api` (controladores, `Program.cs`), `Money.Application` (casos de uso), `Money.Domain` (entidades y reglas), `Money.Infrastructure` (EF Core, SQLite/SQL Server).
 - `Money.Domain` no referencia a ningún otro proyecto.
 - `Money.Api` no accede a `DbContext` directamente desde controladores en features nuevas: pasa por Application.
+- `app/lib/composition/` es la raíz de composición: es el único lugar autorizado a importar varias features para conectarlas (por ejemplo, adaptadores de puertos entre features).
 
 ## 2. Nomenclatura
 
@@ -73,6 +74,7 @@ Documento de referencia para desarrollo y revisión de PRs. Complementa `flutter
 - `ConnectionStrings:Money` apunta a SQLite en desarrollo y a SQL Server en producción.
 - Endpoints bajo `api/<recurso>`.
 - Decimales monetarios: `decimal` en C# y `DECIMAL(18,2)` en base de datos.
+- Montos de movimientos en pesos enteros: el contrato HTTP usa enteros (`long`) y el dominio rechaza decimales.
 - Tasas: almacenar E.A.; convertir a M.V. con `(1 + EA)^(1/12) - 1` en el servicio de dominio.
 
 ## 8. Checklist de PR
