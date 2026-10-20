@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:money_app/features/pockets/domain/entities/pocket.dart';
-import 'package:money_app/features/pockets/domain/value_objects/card_status.dart';
+import 'package:money_app/features/pockets/presentation/theme/card_status_palette.dart';
 
 final class PocketTile extends StatelessWidget {
   const PocketTile({
@@ -17,13 +17,16 @@ final class PocketTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = _CardColors.of(context, pocket.status);
+    final palette = CardStatusPalette.forStatus(
+      pocket.status,
+      Theme.of(context).colorScheme,
+    );
 
     return Card(
-      color: colors.background,
+      color: palette.background,
       child: ListTile(
         onTap: onOpen,
-        leading: CircleAvatar(backgroundColor: colors.accent, radius: 8),
+        leading: CircleAvatar(backgroundColor: palette.accent, radius: 8),
         title: Text(pocket.name),
         subtitle: Text(
           '${pocket.isOwner ? 'pockets.ownerRole'.tr() : 'pockets.sharedRole'.tr()} · '
@@ -40,32 +43,9 @@ final class PocketTile extends StatelessWidget {
     );
   }
 
-  static String _formatPesos(int pesos) =>
-      NumberFormat.currency(locale: 'es_CO', symbol: r'$', decimalDigits: 0).format(pesos);
-}
-
-final class _CardColors {
-  const _CardColors({required this.background, required this.accent});
-
-  final Color background;
-  final Color accent;
-
-  static _CardColors of(BuildContext context, CardStatus status) {
-    final scheme = Theme.of(context).colorScheme;
-
-    return switch (status) {
-      CardStatus.green => _CardColors(
-        background: Colors.green.shade50,
-        accent: Colors.green.shade600,
-      ),
-      CardStatus.yellow => _CardColors(
-        background: Colors.amber.shade50,
-        accent: Colors.amber.shade700,
-      ),
-      CardStatus.red => _CardColors(
-        background: scheme.errorContainer,
-        accent: scheme.error,
-      ),
-    };
-  }
+  static String _formatPesos(int pesos) => NumberFormat.currency(
+    locale: 'es_CO',
+    symbol: r'$',
+    decimalDigits: 0,
+  ).format(pesos);
 }
