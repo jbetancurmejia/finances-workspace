@@ -29,5 +29,28 @@
       "invalidInput": "Check the information you entered",
       "network": "We could not reach the server"
     }
+  },
+  "pockets": {
+    "title": "My pockets",
+    "newPocketLabel": "Pocket name",
+    "createAction": "Create",
+    "empty": "You have no pockets yet. Create one to get started.",
+    "ownerRole": "Owner",
+    "sharedRole": "Shared with you",
+    "addMemberTitle": "Add partner",
+    "partnerEmail": "Partner's email",
+    "addMemberAction": "Add",
+    "addMemberTooltip": "Add partner",
+    "cancel": "Cancel",
+    "lifeCostTooltip": "Cost in life hours",
+    "messages": {
+      "memberAdded": "Partner added to the pocket"
+    },
+    "errors": {
+      "memberNotFound": "No account exists with that email",
+      "memberAlreadyAdded": "That person is already in the pocket",
+      "invalidInput": "Check the name or email",
+      "network": "We could not reach the server"
+    }
   }
 }

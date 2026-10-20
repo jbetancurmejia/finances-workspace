@@ -29,5 +29,28 @@
       "invalidInput": "Revisa los datos ingresados",
       "network": "No pudimos conectar con el servidor"
     }
+  },
+  "pockets": {
+    "title": "Mis bolsillos",
+    "newPocketLabel": "Nombre del bolsillo",
+    "createAction": "Crear",
+    "empty": "Aún no tienes bolsillos. Crea uno para empezar.",
+    "ownerRole": "Propietario",
+    "sharedRole": "Compartido contigo",
+    "addMemberTitle": "Agregar pareja",
+    "partnerEmail": "Correo de tu pareja",
+    "addMemberAction": "Agregar",
+    "addMemberTooltip": "Agregar pareja",
+    "cancel": "Cancelar",
+    "lifeCostTooltip": "Costo en horas de vida",
+    "messages": {
+      "memberAdded": "Pareja agregada al bolsillo"
+    },
+    "errors": {
+      "memberNotFound": "No existe una cuenta con ese correo",
+      "memberAlreadyAdded": "Esa persona ya está en el bolsillo",
+      "invalidInput": "Revisa el nombre o el correo",
+      "network": "No pudimos conectar con el servidor"
+    }
   }
 }

@@ -9,6 +9,10 @@ public sealed class MoneyDbContext(DbContextOptions<MoneyDbContext> options) : D
 
     public DbSet<UserProfile> UserProfiles => Set<UserProfile>();
 
+    public DbSet<Workspace> Workspaces => Set<Workspace>();
+
+    public DbSet<WorkspaceMember> WorkspaceMembers => Set<WorkspaceMember>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MoneyDbContext).Assembly);
