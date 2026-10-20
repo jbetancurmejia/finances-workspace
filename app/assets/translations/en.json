@@ -71,5 +71,25 @@
       "network": "We could not reach the server",
       "preview": "We could not calculate the preview"
     }
+  },
+  "loans": {
+    "title": "Loans",
+    "formTitle": "Register a loan",
+    "principal": "Principal (COP, whole pesos)",
+    "eaRate": "E.A. rate (%)",
+    "termMonths": "Term in months",
+    "startDate": "Start date: {date}",
+    "createAction": "Calculate amortization",
+    "empty": "You have no registered loans yet.",
+    "summary": "{rate}% M.V. · {months} months · payment {payment}",
+    "installment": "{date} · Payment {payment}",
+    "breakdown": "Principal {principal} · Interest {interest} · Balance {balance}",
+    "messages": {
+      "created": "Loan calculated and saved"
+    },
+    "errors": {
+      "invalidInput": "Check the principal, rate, and term",
+      "network": "We could not reach the server"
+    }
   }
 }

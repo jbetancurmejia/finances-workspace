@@ -17,6 +17,7 @@ final class PocketsPage extends StatelessWidget {
     required this.createPocket,
     required this.addMember,
     required this.lifeCostBuilder,
+    required this.loansBuilder,
     required this.workspaceBuilder,
     super.key,
   });
@@ -25,21 +26,31 @@ final class PocketsPage extends StatelessWidget {
   final UseCase<Pocket, String> createPocket;
   final UseCase<void, AddMemberParams> addMember;
   final WidgetBuilder lifeCostBuilder;
+  final WidgetBuilder loansBuilder;
   final Widget Function(BuildContext context, Pocket pocket) workspaceBuilder;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => PocketsCubit(loadPockets, createPocket, addMember)..load(),
-      child: _PocketsView(lifeCostBuilder: lifeCostBuilder, workspaceBuilder: workspaceBuilder),
+      child: _PocketsView(
+        lifeCostBuilder: lifeCostBuilder,
+        loansBuilder: loansBuilder,
+        workspaceBuilder: workspaceBuilder,
+      ),
     );
   }
 }
 
 final class _PocketsView extends StatelessWidget {
-  const _PocketsView({required this.lifeCostBuilder, required this.workspaceBuilder});
+  const _PocketsView({
+    required this.lifeCostBuilder,
+    required this.loansBuilder,
+    required this.workspaceBuilder,
+  });
 
   final WidgetBuilder lifeCostBuilder;
+  final WidgetBuilder loansBuilder;
   final Widget Function(BuildContext context, Pocket pocket) workspaceBuilder;
 
   @override
@@ -51,9 +62,16 @@ final class _PocketsView extends StatelessWidget {
           IconButton(
             tooltip: 'pockets.lifeCostTooltip'.tr(),
             icon: const Icon(Icons.hourglass_bottom),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: lifeCostBuilder),
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute<void>(builder: lifeCostBuilder)),
+          ),
+          IconButton(
+            tooltip: 'loans.title'.tr(),
+            icon: const Icon(Icons.account_balance),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute<void>(builder: loansBuilder)),
           ),
         ],
       ),
@@ -69,7 +87,12 @@ final class _PocketsView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _StatusMessage(status: state.status),
-                Expanded(child: _PocketList(state: state, workspaceBuilder: workspaceBuilder)),
+                Expanded(
+                  child: _PocketList(
+                    state: state,
+                    workspaceBuilder: workspaceBuilder,
+                  ),
+                ),
               ],
             ),
           );
@@ -92,7 +115,9 @@ final class _PocketList extends StatelessWidget {
     }
 
     if (state.pockets.isEmpty) {
-      return Center(child: Text('pockets.empty'.tr(), textAlign: TextAlign.center));
+      return Center(
+        child: Text('pockets.empty'.tr(), textAlign: TextAlign.center),
+      );
     }
 
     return ListView.separated(
@@ -104,7 +129,9 @@ final class _PocketList extends StatelessWidget {
         return PocketTile(
           pocket: pocket,
           onOpen: () => Navigator.of(context).push(
-            MaterialPageRoute<void>(builder: (ctx) => workspaceBuilder(ctx, pocket)),
+            MaterialPageRoute<void>(
+              builder: (ctx) => workspaceBuilder(ctx, pocket),
+            ),
           ),
           onAddMember: () => _promptForMember(context, pocket),
         );

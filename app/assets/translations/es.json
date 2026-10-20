@@ -71,5 +71,25 @@
       "network": "No pudimos conectar con el servidor",
       "preview": "No pudimos calcular la vista previa"
     }
+  },
+  "loans": {
+    "title": "Préstamos",
+    "formTitle": "Registrar préstamo",
+    "principal": "Capital (COP, pesos enteros)",
+    "eaRate": "Tasa E.A. (%)",
+    "termMonths": "Plazo en meses",
+    "startDate": "Fecha inicial: {date}",
+    "createAction": "Calcular amortización",
+    "empty": "Aún no tienes préstamos registrados.",
+    "summary": "{rate}% M.V. · {months} meses · cuota {payment}",
+    "installment": "{date} · Cuota {payment}",
+    "breakdown": "Capital {principal} · Interés {interest} · Saldo {balance}",
+    "messages": {
+      "created": "Préstamo calculado y guardado"
+    },
+    "errors": {
+      "invalidInput": "Revisa el capital, tasa y plazo",
+      "network": "No pudimos conectar con el servidor"
+    }
   }
 }
