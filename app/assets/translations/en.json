@@ -51,7 +51,8 @@
       "memberAlreadyAdded": "That person is already in the pocket",
       "invalidInput": "Check the name or email",
       "network": "We could not reach the server"
-    }
+    },
+    "balanceLabel": "Balance {amount}"
   },
   "transactions": {
     "kindExpense": "Expense",

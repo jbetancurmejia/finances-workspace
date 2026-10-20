@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Money.Api.Contracts;
 using Money.Api.Security;
+using Money.Application.Cards;
 using Money.Application.Services;
 using Money.Application.Workspaces;
 
@@ -10,7 +11,7 @@ namespace Money.Api.Controllers;
 [ApiController]
 [Authorize]
 [Route("api/workspaces")]
-public sealed class WorkspacesController(WorkspaceService workspaceService) : ControllerBase
+public sealed class WorkspacesController(WorkspaceService workspaceService, CardService cardService) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<WorkspaceResponse>), StatusCodes.Status200OK)]
@@ -19,6 +20,15 @@ public sealed class WorkspacesController(WorkspaceService workspaceService) : Co
         var workspaces = await workspaceService.ListForUserAsync(User.GetUserId(), cancellationToken);
 
         return Ok(workspaces.Select(ToResponse).ToList());
+    }
+
+    [HttpGet("cards")]
+    [ProducesResponseType(typeof(IReadOnlyList<CardResponse>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IReadOnlyList<CardResponse>>> ListCards(CancellationToken cancellationToken)
+    {
+        var cards = await cardService.ListForUserAsync(User.GetUserId(), cancellationToken);
+
+        return Ok(cards.Select(ToCardResponse).ToList());
     }
 
     [HttpPost]
@@ -62,6 +72,9 @@ public sealed class WorkspacesController(WorkspaceService workspaceService) : Co
             return Conflict();
         }
     }
+
+    private static CardResponse ToCardResponse(CardSummary card) =>
+        new(card.Id, card.Name, card.IsOwner, decimal.ToInt64(card.Balance), card.Status.ToString());
 
     private static WorkspaceResponse ToResponse(WorkspaceSummary summary) =>
         new(summary.Id, summary.Name, summary.IsOwner);

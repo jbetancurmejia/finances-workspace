@@ -51,7 +51,8 @@
       "memberAlreadyAdded": "Esa persona ya está en el bolsillo",
       "invalidInput": "Revisa el nombre o el correo",
       "network": "No pudimos conectar con el servidor"
-    }
+    },
+    "balanceLabel": "Saldo {amount}"
   },
   "transactions": {
     "kindExpense": "Gasto",

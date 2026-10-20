@@ -35,6 +35,14 @@ public sealed class TransactionServiceTests
 
         public Task<List<Transaction>> ListByWorkspaceAsync(Guid workspaceId, CancellationToken cancellationToken) =>
             Task.FromResult(Items.Where(item => item.WorkspaceId == workspaceId).ToList());
+
+        public Task<(decimal Income, decimal Expense)> GetTotalsAsync(Guid workspaceId, CancellationToken cancellationToken)
+        {
+            var mine = Items.Where(item => item.WorkspaceId == workspaceId).ToList();
+            var income = mine.Where(item => item.Kind == TransactionKind.Income).Sum(item => item.Amount);
+            var expense = mine.Where(item => item.Kind == TransactionKind.Expense).Sum(item => item.Amount);
+            return Task.FromResult((income, expense));
+        }
     }
 
     private sealed class FakeUnitOfWork : IUnitOfWork
