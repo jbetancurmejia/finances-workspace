@@ -6,7 +6,7 @@ import 'package:money_app/features/auth/domain/entities/credentials.dart';
 import 'package:money_app/features/auth/domain/entities/registration.dart';
 import 'package:money_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:money_app/shared/base_data/network/auth_token_store.dart';
-import 'package:money_app/shared/base_domain/failures/failure.dart';
+import 'package:money_app/shared/base_data/network/http_failure_mapper.dart';
 
 final class AuthDataRepository implements AuthRepository {
   const AuthDataRepository(this._datasource, this._tokenStore);
@@ -22,7 +22,7 @@ final class AuthDataRepository implements AuthRepository {
 
       return session;
     } on DioException catch (error) {
-      throw _mapFailure(error, unauthorizedOnStatus: true);
+      throw mapHttpFailure(error);
     }
   }
 
@@ -34,19 +34,7 @@ final class AuthDataRepository implements AuthRepository {
 
       return session;
     } on DioException catch (error) {
-      throw _mapFailure(error, unauthorizedOnStatus: false);
+      throw mapHttpFailure(error);
     }
-  }
-
-  Failure _mapFailure(DioException error, {required bool unauthorizedOnStatus}) {
-    final status = error.response?.statusCode;
-    final message = error.message ?? 'network error';
-
-    return switch (status) {
-      401 when unauthorizedOnStatus => UnauthorizedFailure(message),
-      409 => ConflictFailure(message),
-      400 => ValidationFailure(message),
-      _ => NetworkFailure(message),
-    };
   }
 }

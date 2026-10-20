@@ -28,3 +28,7 @@ final class UnauthorizedFailure extends Failure {
 final class ConflictFailure extends Failure {
   const ConflictFailure(super.message);
 }
+
+final class NotFoundFailure extends Failure {
+  const NotFoundFailure(super.message);
+}
