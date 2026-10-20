@@ -5,6 +5,8 @@ namespace Money.Infrastructure.Persistence;
 
 public sealed class MoneyDbContext(DbContextOptions<MoneyDbContext> options) : DbContext(options)
 {
+    public DbSet<User> Users => Set<User>();
+
     public DbSet<UserProfile> UserProfiles => Set<UserProfile>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

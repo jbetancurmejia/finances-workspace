@@ -11,5 +11,23 @@
       "invalidAmount": "Ingresa un monto mayor a cero",
       "network": "No pudimos conectar con el servidor"
     }
+  },
+  "auth": {
+    "title": "Ingreso a Money",
+    "displayName": "Nombre",
+    "email": "Correo",
+    "password": "Contraseña (mínimo 8 caracteres)",
+    "monthlySalary": "Salario mensual (COP)",
+    "monthlyWorkHours": "Horas laborales al mes",
+    "loginAction": "Ingresar",
+    "registerAction": "Crear cuenta",
+    "switchToLogin": "Ya tengo cuenta",
+    "switchToRegister": "Crear una cuenta nueva",
+    "errors": {
+      "invalidCredentials": "Correo o contraseña incorrectos",
+      "emailTaken": "Ya existe una cuenta con ese correo",
+      "invalidInput": "Revisa los datos ingresados",
+      "network": "No pudimos conectar con el servidor"
+    }
   }
 }
