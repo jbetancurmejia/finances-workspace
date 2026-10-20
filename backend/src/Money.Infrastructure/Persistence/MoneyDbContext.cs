@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Money.Domain.Entities;
+using Money.Domain.Loans;
 
 namespace Money.Infrastructure.Persistence;
 
@@ -14,6 +15,8 @@ public sealed class MoneyDbContext(DbContextOptions<MoneyDbContext> options) : D
     public DbSet<WorkspaceMember> WorkspaceMembers => Set<WorkspaceMember>();
 
     public DbSet<Transaction> Transactions => Set<Transaction>();
+
+    public DbSet<Loan> Loans => Set<Loan>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

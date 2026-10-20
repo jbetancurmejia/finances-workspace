@@ -75,7 +75,8 @@ Documento de referencia para desarrollo y revisión de PRs. Complementa `flutter
 - Endpoints bajo `api/<recurso>`.
 - Decimales monetarios: `decimal` en C# y `DECIMAL(18,2)` en base de datos.
 - Montos de movimientos en pesos enteros: el contrato HTTP usa enteros (`long`) y el dominio rechaza decimales.
-- Tasas: almacenar E.A.; convertir a M.V. con `(1 + EA)^(1/12) - 1` en el servicio de dominio.
+- Tasas: recibir y almacenar el porcentaje E.A.; convertir a M.V. con `(1 + EA/100)^(1/12) - 1` en el dominio.
+- Préstamos: generar cuotas por Sistema Francés; calcular intereses/cuotas con precisión `decimal(18,2)` y ajustar la última cuota para dejar saldo cero.
 
 ## 8. Checklist de PR
 

@@ -11,6 +11,11 @@ import 'package:money_app/features/life_cost/data/datasources/life_cost_remote_d
 import 'package:money_app/features/life_cost/data/repositories/life_cost_data_repository.dart';
 import 'package:money_app/features/life_cost/domain/use_cases/load_life_cost_use_case.dart';
 import 'package:money_app/features/life_cost/presentation/pages/life_cost_page/life_cost_page.dart';
+import 'package:money_app/features/loans/data/datasources/loan_remote_datasource.dart';
+import 'package:money_app/features/loans/data/repositories/loan_data_repository.dart';
+import 'package:money_app/features/loans/domain/use_cases/create_loan_use_case.dart';
+import 'package:money_app/features/loans/domain/use_cases/load_loans_use_case.dart';
+import 'package:money_app/features/loans/presentation/pages/loans_page/loans_page.dart';
 import 'package:money_app/features/pockets/data/datasources/pocket_remote_datasource.dart';
 import 'package:money_app/features/pockets/data/repositories/pocket_data_repository.dart';
 import 'package:money_app/features/pockets/domain/use_cases/add_pocket_member_use_case.dart';
@@ -33,9 +38,15 @@ Future<void> main() async {
   final tokenStore = AuthTokenStore();
   final client = createApiClient(baseUrl: apiBaseUrl, tokenStore: tokenStore);
 
-  final authRepository = AuthDataRepository(AuthHttpDatasource(client), tokenStore);
+  final authRepository = AuthDataRepository(
+    AuthHttpDatasource(client),
+    tokenStore,
+  );
   final pocketRepository = PocketDataRepository(PocketHttpDatasource(client));
-  final transactionRepository = TransactionDataRepository(TransactionHttpDatasource(client));
+  final transactionRepository = TransactionDataRepository(
+    TransactionHttpDatasource(client),
+  );
+  final loanRepository = LoanDataRepository(LoanHttpDatasource(client));
   final loadLifeCost = LoadLifeCostUseCase(
     LifeCostDataRepository(LifeCostHttpDatasource(client)),
   );
@@ -55,6 +66,10 @@ Future<void> main() async {
             createPocket: CreatePocketUseCase(pocketRepository),
             addMember: AddPocketMemberUseCase(pocketRepository),
             lifeCostBuilder: (_) => LifeCostPage(loadLifeCost: loadLifeCost),
+            loansBuilder: (_) => LoansPage(
+              loadLoans: LoadLoansUseCase(loanRepository),
+              createLoan: CreateLoanUseCase(loanRepository),
+            ),
             workspaceBuilder: (_, pocket) => WorkspaceDetailPage(
               workspaceId: pocket.id,
               workspaceName: pocket.name,
