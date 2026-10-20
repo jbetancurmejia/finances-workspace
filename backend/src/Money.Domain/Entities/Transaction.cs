@@ -25,12 +25,17 @@ public sealed class Transaction : Entity
             throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be positive.");
         }
 
+        if (amount != decimal.Truncate(amount))
+        {
+            throw new ArgumentException("Amount must be whole pesos.", nameof(amount));
+        }
+
         ArgumentException.ThrowIfNullOrWhiteSpace(description);
 
         WorkspaceId = workspaceId;
         CreatedByUserId = createdByUserId;
         Kind = kind;
-        Amount = decimal.Round(amount, 2, MidpointRounding.AwayFromZero);
+        Amount = amount;
         Description = description.Trim();
         OccurredOn = occurredOn;
     }

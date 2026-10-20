@@ -83,6 +83,10 @@ final class _WorkspaceDetailView extends StatelessWidget {
   }
 
   String? _previewText(TransactionsState state) {
+    if (state.previewFailed) {
+      return 'transactions.errors.preview'.tr();
+    }
+
     final hours = state.previewHours;
     final days = state.previewDays;
 

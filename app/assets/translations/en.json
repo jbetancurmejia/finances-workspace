@@ -67,7 +67,8 @@
     },
     "errors": {
       "invalidInput": "Check the amount and description",
-      "network": "We could not reach the server"
+      "network": "We could not reach the server",
+      "preview": "We could not calculate the preview"
     }
   }
 }

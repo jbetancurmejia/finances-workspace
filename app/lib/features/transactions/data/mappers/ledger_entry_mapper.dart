@@ -5,7 +5,7 @@ extension LedgerEntryDtoMapper on LedgerEntryDto {
   LedgerEntry toEntity() => LedgerEntry(
     id: id,
     kind: kind == 'Income' ? LedgerEntryKind.income : LedgerEntryKind.expense,
-    pesos: amount.round(),
+    pesos: amount,
     description: description,
     occurredOn: DateTime.parse(occurredOn),
     createdByUserId: createdByUserId,

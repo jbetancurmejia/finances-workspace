@@ -14,7 +14,7 @@ final class LedgerEntryDto {
     return LedgerEntryDto(
       id: json['id'] as String,
       kind: json['kind'] as String,
-      amount: (json['amount'] as num).toDouble(),
+      amount: (json['amount'] as num).toInt(),
       description: json['description'] as String,
       occurredOn: json['occurredOn'] as String,
       createdByUserId: json['createdByUserId'] as String,
@@ -25,7 +25,7 @@ final class LedgerEntryDto {
 
   final String id;
   final String kind;
-  final double amount;
+  final int amount;
   final String description;
   final String occurredOn;
   final String createdByUserId;

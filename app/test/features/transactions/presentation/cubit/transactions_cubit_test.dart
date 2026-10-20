@@ -83,6 +83,23 @@ void main() {
     );
   });
 
+  group('TransactionsCubit.previewLifeCost failure', () {
+    blocTest<TransactionsCubit, TransactionsState>(
+      'marks the preview as failed without changing the record status',
+      // Arrange
+      build: () {
+        when(() => estimator.estimate(any())).thenAnswer((_) async => throw const NetworkFailure('down'));
+        return build();
+      },
+      // Act
+      act: (cubit) => cubit.previewLifeCost(300000),
+      // Assert
+      expect: () => [
+        const TransactionsState(previewFailed: true),
+      ],
+    );
+  });
+
   group('TransactionsCubit.record', () {
     blocTest<TransactionsCubit, TransactionsState>(
       'emits recorded then reloads entries and clears the preview',

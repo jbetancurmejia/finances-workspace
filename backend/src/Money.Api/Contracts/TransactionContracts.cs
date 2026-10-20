@@ -8,8 +8,8 @@ public sealed class RecordTransactionRequest
     [Required]
     public TransactionKind Kind { get; init; }
 
-    [Range(0.01d, 999999999999d)]
-    public decimal Amount { get; init; }
+    [Range(1d, 999999999999d)]
+    public long Amount { get; init; }
 
     [Required, StringLength(120, MinimumLength = 1)]
     public string Description { get; init; } = string.Empty;
@@ -21,7 +21,7 @@ public sealed class RecordTransactionRequest
 public sealed record TransactionResponse(
     Guid Id,
     string Kind,
-    decimal Amount,
+    long Amount,
     string Description,
     DateOnly OccurredOn,
     Guid CreatedByUserId);

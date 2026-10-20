@@ -29,9 +29,9 @@ final class TransactionsCubit extends Cubit<TransactionsState> {
   Future<void> previewLifeCost(int pesos) async {
     try {
       final preview = await _estimator.estimate(pesos);
-      emit(state.copyWith(preview: preview));
+      emit(state.copyWith(preview: preview, previewFailed: false));
     } on Failure {
-      emit(state.copyWith(clearPreview: true, status: TransactionsStatus.networkError));
+      emit(state.copyWith(clearPreview: true, previewFailed: true));
     }
   }
 

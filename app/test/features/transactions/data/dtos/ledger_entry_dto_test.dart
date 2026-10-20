@@ -25,12 +25,12 @@ void main() {
       expect(entry.occurredOn, DateTime(2026, 10, 18));
     });
 
-    test('maps Income kind and decimal amounts to rounded pesos', () {
+    test('maps Income kind and whole pesos', () {
       // Arrange
       final json = <String, dynamic>{
         'id': 'e2',
         'kind': 'Income',
-        'amount': 1500000.0,
+        'amount': 1500000,
         'description': 'Salario',
         'occurredOn': '2026-10-15',
         'createdByUserId': 'u2',

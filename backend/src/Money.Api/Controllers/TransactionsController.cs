@@ -63,7 +63,7 @@ public sealed class TransactionsController(TransactionService transactionService
     private static TransactionResponse ToResponse(TransactionSummary summary) => new(
         summary.Id,
         summary.Kind.ToString(),
-        summary.Amount,
+        decimal.ToInt64(summary.Amount),
         summary.Description,
         summary.OccurredOn,
         summary.CreatedByUserId);

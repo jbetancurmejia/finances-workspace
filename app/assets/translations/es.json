@@ -67,7 +67,8 @@
     },
     "errors": {
       "invalidInput": "Revisa el monto y la descripción",
-      "network": "No pudimos conectar con el servidor"
+      "network": "No pudimos conectar con el servidor",
+      "preview": "No pudimos calcular la vista previa"
     }
   }
 }
